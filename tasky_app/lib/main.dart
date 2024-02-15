@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tasky_app/screens/signup.dart';
+import 'package:tasky_app/screens/my_to_do.dart';
 
 void main() {
   runApp(
@@ -51,7 +52,7 @@ class _MyApp extends State<MyApp> {
                 height: 413,
                 width: 355,
                 decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 241, 241, 239),
+                  color: const Color.fromARGB(255, 241, 241, 239),
                   borderRadius: BorderRadius.circular(20.0),
                 ),
                 child: Column(
@@ -80,18 +81,18 @@ class _MyApp extends State<MyApp> {
                     ElevatedButton(
                       onPressed: () {
                         Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => MyToDo()));
+                      },
+                      child: const Text("Login"),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(context,
                             MaterialPageRoute(builder: (context) => Signup()));
                       },
-                      child: Text("Login"),
+                      child: const Text("New User? Register here"),
                     ),
                     const SizedBox(height: 20),
-                    const Text(
-                      "New User? Register here",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
                   ],
                 ),
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tasky_app/main.dart';
 
 class Signup extends StatelessWidget {
   @override
@@ -26,10 +27,10 @@ class Signup extends StatelessWidget {
               ),
             ),
             Container(
-              height: 413,
+              height: 480,
               width: 355,
               decoration: BoxDecoration(
-                color: Color.fromARGB(255, 241, 241, 239),
+                color: const Color.fromARGB(255, 241, 241, 239),
                 borderRadius: BorderRadius.circular(20.0),
               ),
               child: Column(
@@ -70,6 +71,13 @@ class Signup extends StatelessWidget {
                   const ElevatedButton(
                     onPressed: null,
                     child: Text("Sign Up"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => MyApp()));
+                    },
+                    child: const Text("Login"),
                   ),
                 ],
               ),
