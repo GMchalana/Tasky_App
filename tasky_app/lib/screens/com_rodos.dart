@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tasky_app/screens/add_to_do.dart';
 import 'package:tasky_app/screens/navbar.dart';
 
-class MyToDo extends StatelessWidget {
+class ComToDo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -11,7 +11,7 @@ class MyToDo extends StatelessWidget {
         drawer: NavBar(),
         appBar: AppBar(
           title: const Center(
-            child: Text("My To- Dos"),
+            child: Text("Completed To- Dos"),
           ),
           actions: <Widget>[
             IconButton(
