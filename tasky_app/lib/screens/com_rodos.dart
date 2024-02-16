@@ -21,7 +21,7 @@ class ComToDo extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => AddToDo()),
                 );
               },
-              icon: Icon(Icons.add),
+              icon: const Icon(Icons.add),
             )
           ],
         ),

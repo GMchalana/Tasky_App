@@ -25,7 +25,7 @@ class AddToDo extends StatelessWidget {
               children: [
                 Container(
                   decoration: BoxDecoration(
-                    color: Color.fromARGB(81, 250, 250, 250),
+                    color: const Color.fromARGB(81, 250, 250, 250),
                     borderRadius: BorderRadius.circular(20.0),
                   ),
                   child: Column(
@@ -52,7 +52,7 @@ class AddToDo extends StatelessWidget {
                       const SizedBox(height: 20),
                       const ElevatedButton(
                         onPressed: (null),
-                        child: const Text("Add Task"),
+                        child: Text("Add Task"),
                       ),
                       const SizedBox(height: 20),
                     ],

@@ -1,7 +1,53 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:tasky_app/main.dart';
+import 'package:http/http.dart' as http;
 
-class Signup extends StatelessWidget {
+class Signup extends StatefulWidget {
+  @override
+  _SignupState createState() => _SignupState();
+}
+
+class _SignupState extends State<Signup> {
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+
+  bool isNotValidate = false;
+
+  void registerUser() async {
+    if (usernameController.text.isNotEmpty &&
+        emailController.text.isNotEmpty &&
+        passwordController.text.isNotEmpty) {
+      var regBody = {
+        "username": usernameController.text,
+        "email": emailController.text,
+        "password": passwordController.text
+      };
+
+      var response = await http.post(
+          Uri.parse('http://192.168.1.106:3000/registration'),
+          headers: {"Content-Type": "application/json"},
+          body: jsonEncode(regBody));
+
+      var jsonResponse = jsonDecode(response.body);
+
+      print(jsonResponse['status']);
+
+      if (jsonResponse['status']) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => MyApp()));
+      } else {
+        print("Something went wrong");
+      }
+    } else {
+      setState(() {
+        isNotValidate = true;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,32 +90,43 @@ class Signup extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 5),
-                  TextFormField(
-                    decoration: const InputDecoration(
+                  TextField(
+                    controller: usernameController,
+                    decoration: InputDecoration(
                       labelText: 'User Name',
+                      errorStyle: const TextStyle(color: Colors.white),
+                      errorText: isNotValidate ? "Enter Proper Info" : null,
                     ),
                   ),
                   const SizedBox(height: 5),
-                  TextFormField(
-                    decoration: const InputDecoration(
+                  TextField(
+                    controller: emailController,
+                    decoration: InputDecoration(
                       labelText: 'Email Address',
+                      errorStyle: const TextStyle(color: Colors.white),
+                      errorText: isNotValidate ? "Enter Proper Info" : null,
                     ),
                   ),
                   const SizedBox(height: 5),
-                  TextFormField(
-                    decoration: const InputDecoration(
+                  TextField(
+                    controller: passwordController,
+                    decoration: InputDecoration(
                       labelText: 'Password',
+                      errorStyle: const TextStyle(color: Colors.white),
+                      errorText: isNotValidate ? "Enter Proper Info" : null,
                     ),
                   ),
                   const SizedBox(height: 5),
-                  TextFormField(
-                    decoration: const InputDecoration(
+                  const TextField(
+                    decoration: InputDecoration(
                       labelText: 'Conform Password',
                     ),
                   ),
                   const SizedBox(height: 5),
-                  const ElevatedButton(
-                    onPressed: null,
+                  ElevatedButton(
+                    onPressed: () {
+                      registerUser();
+                    },
                     child: Text("Sign Up"),
                   ),
                   ElevatedButton(
